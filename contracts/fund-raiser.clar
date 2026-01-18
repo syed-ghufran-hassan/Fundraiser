@@ -33,6 +33,8 @@
     ;; If donor doesn't exist, default to 0, then add the new amount
     (map-set donors tx-sender (+ (default-to u0 (map-get? donors tx-sender)) amount))
 
+     (asserts! (< (var-get total-funded) FUNDING-GOAL) (err u5))  ;; Error u5: Goal already reached
+
     ;; Return success
     (ok true)
   )
